@@ -148,7 +148,6 @@ def handle(msg):
                         bot.sendMessage(msg['chat']['id'],SendM)
                         SendM += "\n"+ str(ac_list[(ac_sum-1)]) 
                         bot.sendMessage(own_id,SendM)
-                        #return main()
                         print "End"
                         pass
                         print "搵緊..."
@@ -192,7 +191,7 @@ def handle(msg):
                             print SendM
                             bot.sendMessage(msg['chat']['id'],SendM)
 
-                            #A looging on telegram ()for owner
+                            #A logging on telegram ()for owner
                             try:
                                 SendM += '\n\n@' + str(msg['chat']['username'])
                             except:
