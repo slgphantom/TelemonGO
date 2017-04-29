@@ -206,7 +206,9 @@ def handle(msg):
                 target_lat = float(msg['reply_to_message']['location']['latitude'])
                 target_lng = float(msg['reply_to_message']['location']['longitude'])
 
-                if int(target_lat) > 22 or int(target_lat) < 22 or int(target_lng) > 114 or int(target_lng) < 113:
+                if config.Restriction.lat == '' and config.Restriction.lng == '':
+                    pass
+                elif int(target_lat) < config.RangeRestriction.latmin or int(target_lat) > config.RangeRestriction.latmax or int(target_lng) < config.RangeRestriction.lngmin or int(target_lng) > config.RangeRestriction.lngmax:
                     bot.sendMessage(msg['chat']['id'], "唔支持國際航班")
                     return place is False
                     pass
