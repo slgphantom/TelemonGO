@@ -1,0 +1,3 @@
+git+https://github.com/pogodevorg/pgoapi.git@develop#egg=pgoapi
+telepot
+requests
