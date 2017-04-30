@@ -4,6 +4,7 @@
 import sys
 import time
 import telepot
+import requests
 
 
 #import for pgoapi
