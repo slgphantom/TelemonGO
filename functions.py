@@ -28,6 +28,9 @@ formatter = logging.Formatter('[%(asctime)s] - [%(levelname)s] - [line %(lineno)
 logger2.setFormatter(formatter)
 
 #config
+config = ConfigParser.ConfigParser()
+config.readfp(open('config.ini'))
+
 hash_key = config.get('DEFAULT', 'hash_key')
 ac_list = eval(config.get('account', 'user'))
 pw_list = eval(config.get('account', 'pass'))
