@@ -161,6 +161,7 @@ def check_iv_cp(msg):
                         try:
                             encounter_response = api.encounter( encounter_id = pkm_confirmed[sum].get('encounter_id'), spawn_point_id = str(pkm_confirmed[sum].get('spawn_point_id')), player_latitude = target_lat, player_longitude = target_lng)
                             print('Response dictionary:\n\r{}'.format(pprint.PrettyPrinter(indent=4).pformat(encounter_response)))
+                            print 'encounter'
                             time.sleep(1)
                             tth = pkm_confirmed[sum].get('expiration_timestamp_ms')
 
@@ -182,6 +183,7 @@ def check_iv_cp(msg):
                             pkm_n = pkm_hk.get(str(pkm_id))
                             mv_1_n = pkm_mv.get(str(mv_1))
                             mv_2_n = pkm_mv.get(str(mv_2))
+                            print 'stat'
 
 
                             #Send Results to Telegram
