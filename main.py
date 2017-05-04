@@ -24,6 +24,9 @@ def handle(msg):
         check_iv_cp(msg)
         gps(msg)
         show_map(msg)
+    else:
+        gps(msg)
+        show_map(msg)
 
 bot.message_loop({'chat': handle})
 print('Listening ...')
