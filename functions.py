@@ -45,6 +45,7 @@ ac_sum = 0
 place = None
 target_lat = None
 target_lng = None
+alt = random.uniform(0.0, 70.0)
 
 with open('pkmn_hk.json') as json_name:
     pkm_hk = json.load(json_name)
@@ -212,7 +213,6 @@ def check_iv_cp(msg):
             pkm_id = int(cmd[1])
             pkm_raw = []
             pkm = []
-            alt = random.uniform(0.0, 70.0)
             global skip
             global trial
             global End
