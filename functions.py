@@ -46,6 +46,8 @@ place = None
 target_lat = None
 target_lng = None
 LOGIN = None
+pkm = []
+pkm_raw = []
 alt = random.uniform(0.0, 70.0)
 
 with open('pkmn_hk.json') as json_name:
@@ -66,6 +68,7 @@ def calc_level(pokemon_data):
 def login():
     try:
         global ac_sum
+        global LOGIN
         #Support ptc account onlt
         api.login('ptc', ac_list[ac_sum], pw_list[ac_sum])
         ac_sum += 1
@@ -79,6 +82,10 @@ def login():
         
 
 def telemon():
+    global pkm_raw
+    global pkm
+    pkm_raw = []
+    pkm = []
     cell_ids = util.get_cell_ids(target_lat, target_lng)
     timestamps = [0,] * len(cell_ids)
     req = api.create_request()
@@ -204,6 +211,8 @@ def check_iv_cp(msg):
             global home_lng
             global target_lat
             global target_lng
+            global pkm
+            global pkm_raw
             bot.sendMessage(msg['chat']['id'],"收到")
 
             target_lat = float(msg['reply_to_message']['location']['latitude'])
