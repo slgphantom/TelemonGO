@@ -4,18 +4,16 @@
 import sys
 import time
 import telepot
+import ConfigParser
 from functions import check_iv_cp, show_map, gps
 
-##+++++++++++++++++++++++Edit below items+++++++++++++++++++++++++++#
-#hash_key = "<hashkey>"
-#ac_list = ["<username>"]
-#pw_list = ["<password>"]
-#home_lat = float(<lat>)
-#home_lng = float(<lng>)
-#allowed_list = [<telegram_id>]
-#own_id = <telegram_id>
-#bot = telepot.Bot("<bot_token>")
-##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+#config
+config = ConfigParser.ConfigParser()
+config.readfp(open('config.ini'))
+
+allowed_list = eval(config.get('Telegram', 'allow_list'))
+bot_token = config.get('Telegram', 'bot_token')
+bot = telepot.Bot(bot_token)
 
 
 def handle(msg):
