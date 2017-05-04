@@ -62,27 +62,30 @@ def calc_level(pokemon_data):
 
 
 def check_iv_cp(msg):
-    if "reply_to_message" in msg and 'location' in msg['reply_to_message'] and 'text' in msg and msg['text'][:3] == '/cp':
-        cmd = msg['text'].split(' ')
-        LOGIN = None
-        def login():
-            try:
-                global ac_sum
-                #Support ptc account onlt
-                api.login('ptc', ac_list[ac_sum], pw_list[ac_sum])
-                ac_sum += 1
-                if ac_sum == len(ac_list):
-                    ac_sum = 0
-                return LOGIN is True
-            except:
-                print "login fail"
-                ac_sum += 1
-                return LOGIN is False
+    global ac_sum
+    if 1:
+        if "reply_to_message" in msg and 'location' in msg['reply_to_message'] and 'text' in msg and msg['text'][:3] == '/cp':
+            cmd = msg['text'].split(' ')
+            LOGIN = None
+            def login():
+                try:
+                    global ac_sum
+                    #Support ptc account onlt
+                    api.login('ptc', ac_list[ac_sum], pw_list[ac_sum])
+                    ac_sum += 1
+                    if ac_sum == len(ac_list):
+                        ac_sum = 0
+                        return LOGIN is True
+                except:
+                    print "login fail"
+                    ac_sum += 1
+                    return LOGIN is False
             try:
                 global place
                 global home_lat
                 global home_lng
                 bot.sendMessage(msg['chat']['id'],"收到")
+
                 target_lat = float(msg['reply_to_message']['location']['latitude'])
                 target_lng = float(msg['reply_to_message']['location']['longitude'])
                 if int(target_lat) > 22 or int(target_lat) < 22 or int(target_lng) > 114 or int(target_lng) < 113:
@@ -99,7 +102,7 @@ def check_iv_cp(msg):
                 skip = 0
                 trial = 0
                 print "搵緊..."
-            
+                
 
                 def telemon():
 
@@ -110,6 +113,8 @@ def check_iv_cp(msg):
                     response = req.call()
                     cells = response['responses']['GET_MAP_OBJECTS']['map_cells']
                     print('Response dictionary:\n\r{}'.format(pprint.PrettyPrinter(indent=4).pformat(response)))
+
+
                     for cell in cells:
                         pkm_raw.extend(cell.get('catchable_pokemons', []))
                     for i in pkm_raw:
@@ -126,6 +131,8 @@ def check_iv_cp(msg):
                     return
 
 
+
+        
 
                 def main():
                     api.activate_hash_server(hash_key)
@@ -147,17 +154,20 @@ def check_iv_cp(msg):
                         pass
                         print "搵緊..."
                     n = len(pkm)
+
                     def check():
                         try:
                             encounter_response = api.encounter( encounter_id = pkm_confirmed[sum].get('encounter_id'), spawn_point_id = str(pkm_confirmed[sum].get('spawn_point_id')), player_latitude = target_lat, player_longitude = target_lng)
                             print('Response dictionary:\n\r{}'.format(pprint.PrettyPrinter(indent=4).pformat(encounter_response)))
                             time.sleep(1)
                             tth = pkm_confirmed[sum].get('expiration_timestamp_ms')
+
                             #Disappear Time
                             if str(tth) == '-1':
                                 tth = '\n\n剩餘: ' + '>90s'
                             else:
                                 tth = '\n\n剩餘: ' + str(int(int(pkm_confirmed[sum].get('expiration_timestamp_ms'))/1000 - time.time())) + 's'
+
                             iv_a = encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'].get('individual_attack', 0)
                             iv_d = encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'].get('individual_defense', 0)
                             iv_s = encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'].get('individual_stamina', 0)
@@ -165,10 +175,13 @@ def check_iv_cp(msg):
                             mv_1 = encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['move_1']
                             mv_2 = encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['move_2']
                             pkm_lvl = calc_level(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'])
+
+
                             pkm_n = pkm_hk.get(str(pkm_id))
                             mv_1_n = pkm_mv.get(str(mv_1))
                             mv_2_n = pkm_mv.get(str(mv_2))
-                        
+
+
                             #Send Results to Telegram
                             SendM = '#'+ str(pkm_n) + '  (' + str(iv_0) + '%)\n\n30+:\nIV: ' + str(iv_a) + '  |  ' + str(iv_d) + '  |  ' + str(iv_s) + '\nMV: ' + str(mv_1_n) + '  |  ' + str(mv_2_n) + '\nCP: ' + str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['cp']) + '\nLVL: ' + str(pkm_lvl) 
                             #Unown Form
@@ -188,14 +201,14 @@ def check_iv_cp(msg):
                             SendM += "\n\n"+ str(ac_list[(ac_sum-1)]) + '\nHash_Remaining: ' + str(HashServer.status['remaining'])
                             bot.sendMessage(own_id,SendM)
                             return True
-                                        
+                                            
                         except:
                             return False
 
 
                     sum = 0
                     pkm_confirmed = []
-                
+                    
                     for i in pkm:
                         if i.get('pokemon_id') == int(pkm_id):
                             pkm_confirmed.append(i)
