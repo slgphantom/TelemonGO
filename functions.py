@@ -63,6 +63,8 @@ def calc_level(pokemon_data):
 
 def check_iv_cp(msg):
     global ac_sum
+
+    #Access Control
     if 1:
         if "reply_to_message" in msg and 'location' in msg['reply_to_message'] and 'text' in msg and msg['text'][:3] == '/cp':
             cmd = msg['text'].split(' ')
@@ -80,7 +82,7 @@ def check_iv_cp(msg):
                     print "login fail"
                     ac_sum += 1
                     return LOGIN is False
-            if 1:
+            try:
                 global place
                 global home_lat
                 global home_lng
@@ -229,7 +231,7 @@ def check_iv_cp(msg):
                 main()
 
 
-            """except Exception,e:
+            except Exception,e:
                 if LOGIN is not True:
                     SendM = "Login唔到wo" + "\n" + "嚟多次！"
                     logger.error('[login failed]')
@@ -242,8 +244,7 @@ def check_iv_cp(msg):
                     logger.error(str(e))
                     bot.sendMessage(msg['chat']['id'], SendM)
                     SendM += "\n"+ str(ac_list[(ac_sum-1)]) 
-                bot.sendMessage(own_id,SendM)"""
-
+                bot.sendMessage(own_id,SendM)
                 
 def gps(msg):
     if "reply_to_message" in msg and 'location' in msg['reply_to_message'] and 'text' in msg and msg['text'][:4] == '/gps':
