@@ -43,6 +43,8 @@ bot = telepot.Bot(bot_token)
 
 ac_sum = 0
 place = None
+target_lat = None
+target_lng = None
 
 with open('pkmn_hk.json') as json_name:
     pkm_hk = json.load(json_name)
