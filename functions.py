@@ -80,7 +80,7 @@ def check_iv_cp(msg):
                     print "login fail"
                     ac_sum += 1
                     return LOGIN is False
-            try:
+            if 1:
                 global place
                 global home_lat
                 global home_lng
@@ -229,7 +229,7 @@ def check_iv_cp(msg):
                 main()
 
 
-            except Exception,e:
+            """except Exception,e:
                 if LOGIN is not True:
                     SendM = "Login唔到wo" + "\n" + "嚟多次！"
                     logger.error('[login failed]')
@@ -242,7 +242,7 @@ def check_iv_cp(msg):
                     logger.error(str(e))
                     bot.sendMessage(msg['chat']['id'], SendM)
                     SendM += "\n"+ str(ac_list[(ac_sum-1)]) 
-                bot.sendMessage(own_id,SendM)
+                bot.sendMessage(own_id,SendM)"""
 
                 
 def gps(msg):
