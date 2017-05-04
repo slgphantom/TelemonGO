@@ -142,7 +142,7 @@ def check():
         return False
         
 
-def check_iv_cp():
+def check_iv_cp(msg):
     if "reply_to_message" in msg and 'location' in msg['reply_to_message'] and 'text' in msg and msg['text'][:3] == '/cp':
         cmd = msg['text'].split(' ')
         LOGIN = None
@@ -186,7 +186,7 @@ def check_iv_cp():
                 bot.sendMessage(own_id,SendM)
                 
                 
-def gps():
+def gps(msg):
     if "reply_to_message" in msg and 'location' in msg['reply_to_message'] and 'text' in msg and msg['text'][:4] == '/gps':
         lat = float(msg['reply_to_message']['location']['latitude'])
         lng = float(msg['reply_to_message']['location']['longitude'])
@@ -194,7 +194,7 @@ def gps():
         bot.sendPhoto(msg['chat']['id'],f)
         
 
-def show_map():
+def show_map(msg):
     if 'text' in msg and msg['text'][:4] == '/map':
         try:
             location = msg['text'].split(' ')
