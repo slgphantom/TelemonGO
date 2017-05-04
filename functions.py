@@ -45,6 +45,7 @@ ac_sum = 0
 place = None
 target_lat = None
 target_lng = None
+LOGIN = None
 alt = random.uniform(0.0, 70.0)
 
 with open('pkmn_hk.json') as json_name:
@@ -197,11 +198,12 @@ def check():
 def check_iv_cp(msg):
     if "reply_to_message" in msg and 'location' in msg['reply_to_message'] and 'text' in msg and msg['text'][:3] == '/cp':
         cmd = msg['text'].split(' ')
-        LOGIN = None
         try:
             global place
             global home_lat
             global home_lng
+            global target_lat
+            global target_lng
             bot.sendMessage(msg['chat']['id'],"收到")
 
             target_lat = float(msg['reply_to_message']['location']['latitude'])
