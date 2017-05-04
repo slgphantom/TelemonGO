@@ -167,9 +167,9 @@ def check_iv_cp(msg):
 
                             #Disappear Time
                             if str(tth) == '-1':
-                                tth = '\n\n剩餘: ' + '>90s'
+                                tth = u'\n\n剩餘: ' + '>90s'
                             else:
-                                tth = '\n\n剩餘: ' + str(int(int(pkm_confirmed[sum].get('expiration_timestamp_ms'))/1000 - time.time())) + 's'
+                                tth = u'\n\n剩餘: ' + str(int(int(pkm_confirmed[sum].get('expiration_timestamp_ms'))/1000 - time.time())) + 's'
 
                             iv_a = encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'].get('individual_attack', 0)
                             iv_d = encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'].get('individual_defense', 0)
