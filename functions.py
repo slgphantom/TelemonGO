@@ -1,3 +1,5 @@
+# encoding=utf8 
+
 def calc_level(pokemon_data):
     cpm = pokemon_data["cp_multiplier"]
     if cpm < 0.734:
