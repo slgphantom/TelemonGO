@@ -82,7 +82,7 @@ def check_iv_cp(msg):
                     print "login fail"
                     ac_sum += 1
                     return LOGIN is False
-            if 1:
+            try:
                 global place
                 global home_lat
                 global home_lng
@@ -186,7 +186,7 @@ def check_iv_cp(msg):
 
 
                             #Send Results to Telegram
-                            SendM =  '  (' + str(iv_0) + '%)\n\n30+:\nIV: ' + str(iv_a) + '  |  ' + str(iv_d) + '  |  ' + str(iv_s) + '\nMV: ' + str(mv_1_n) + '  |  ' + str(mv_2_n) + '\nCP: ' + str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['cp']) + '\nLVL: ' + str(pkm_lvl) 
+                            SendM =  '#'+ pkm_n + '  (' + str(iv_0) + '%)\n\n30+:\nIV: ' + str(iv_a) + '  |  ' + str(iv_d) + '  |  ' + str(iv_s) + '\nMV: ' + str(mv_1_n) + '  |  ' + str(mv_2_n) + '\nCP: ' + str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['cp']) + '\nLVL: ' + str(pkm_lvl) 
                             #Unown Form
                             if int(pkm_id) == 201:
                                 form = int(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['pokemon_display']['form'])
@@ -232,7 +232,7 @@ def check_iv_cp(msg):
                 main()
 
 
-            """except Exception,e:
+            except Exception,e:
                 if LOGIN is not True:
                     SendM = "Login唔到wo" + "\n" + "嚟多次！"
                     logger.error('[login failed]')
@@ -245,7 +245,7 @@ def check_iv_cp(msg):
                     logger.error(str(e))
                     bot.sendMessage(msg['chat']['id'], SendM)
                     SendM += "\n"+ str(ac_list[(ac_sum-1)]) 
-                bot.sendMessage(own_id,SendM)"""
+                bot.sendMessage(own_id,SendM)
                 
 def gps(msg):
     if "reply_to_message" in msg and 'location' in msg['reply_to_message'] and 'text' in msg and msg['text'][:4] == '/gps':
