@@ -192,7 +192,7 @@ def gps():
         bot.sendPhoto(msg['chat']['id'],f)
         
 
-def map():
+def show_map():
     if 'text' in msg and msg['text'][:4] == '/map':
         try:
             location = msg['text'].split(' ')
