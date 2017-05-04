@@ -111,7 +111,7 @@ def telemon():
     return
 
 
-def main():
+def main(msg):
     global pkm_id
     pkm_id = None
     api.activate_hash_server(hash_key)
@@ -234,7 +234,7 @@ def check_iv_cp(msg):
             skip = 0
             trial = 0
             print "搵緊..."
-            main()
+            main(msg)
             
         except Exception,e:
                 if LOGIN is not True:
