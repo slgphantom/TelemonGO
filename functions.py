@@ -161,7 +161,7 @@ def check_iv_cp(msg):
                         try:
                             encounter_response = api.encounter( encounter_id = pkm_confirmed[sum].get('encounter_id'), spawn_point_id = str(pkm_confirmed[sum].get('spawn_point_id')), player_latitude = target_lat, player_longitude = target_lng)
                             print('Response dictionary:\n\r{}'.format(pprint.PrettyPrinter(indent=4).pformat(encounter_response)))
-                            print 'encounter'
+                            
                             time.sleep(1)
                             tth = pkm_confirmed[sum].get('expiration_timestamp_ms')
 
@@ -183,12 +183,13 @@ def check_iv_cp(msg):
                             pkm_n = pkm_hk.get(str(pkm_id))
                             mv_1_n = pkm_mv.get(str(mv_1))
                             mv_2_n = pkm_mv.get(str(mv_2))
-                            print 'stat'
+                            print 'preSendM'
 
 
                             #Send Results to Telegram
                             SendM = '#'+ str(pkm_n) + '  (' + str(iv_0) + '%)\n\n30+:\nIV: ' + str(iv_a) + '  |  ' + str(iv_d) + '  |  ' + str(iv_s) + '\nMV: ' + str(mv_1_n) + '  |  ' + str(mv_2_n) + '\nCP: ' + str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['cp']) + '\nLVL: ' + str(pkm_lvl) 
                             #Unown Form
+                            print 'form'
                             if int(pkm_id) == 201:
                                 form = int(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['pokemon_display']['form'])
                                 form_l = 'A' if form is 1 else 'B' if form is 2 else 'C' if form is 3 else 'D' if form is 4 else 'E' if form is 5 else 'F' if form is 6 else 'G' if form is 7 else 'H' if form is 8 else 'I' if form is 9 else 'J' if form is 10 else 'K' if form is 11 else 'L' if form is 12 else 'M' if form is 13 else 'N' if form is 14 else 'O' if form is 15 else 'P' if form is 16 else 'Q' if form is 17 else 'R' if form is 18 else 'S' if form is 19 else 'T' if form is 20 else 'U' if form is 21 else 'V' if form is 22 else 'W' if form is 23 else 'X' if form is 24 else 'Y' if form is 25 else 'Z' if form is 26 else '!' if form is 27 else '?' if form is 28 else '' #neutral
