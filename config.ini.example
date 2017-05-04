@@ -9,3 +9,7 @@ allow_list = [1234567 , -1001234567]
 [Location]
 lat = 22.456
 lng = 114.123
+
+[account]
+user = ["user1","user2"]
+pass = ["pass1","pass2"]
