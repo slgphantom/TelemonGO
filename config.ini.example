@@ -1,0 +1,11 @@
+[DEFAULT]
+hash_key = AXXXXXXXXXXXXXXXXXX0
+
+[Telegram]
+bot_token = 111111111:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+admin_id = 1234567
+allow_list = [1234567 , -1001234567]
+
+[Location]
+lat = 22.456
+lng = 114.123
