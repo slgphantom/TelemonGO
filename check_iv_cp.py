@@ -5,7 +5,7 @@ import sys
 import time
 import telepot
 import requests
-import functions
+from functions import check_iv_cp, show_map, gps
 import json
 
 #import for pgoapi
@@ -50,9 +50,9 @@ def handle(msg):
 
     #Access Control
     if msg['chat']['id'] in allowed_list:
-        check_iv_cp()
-        gps()
-        show_map()
+        check_iv_cp(msg)
+        gps(msg)
+        show_map(msg)
 
 bot.message_loop({'chat': handle})
 print('Listening ...')
