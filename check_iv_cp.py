@@ -40,8 +40,8 @@ logger2.setFormatter(formatter)
 ac_sum = 0
 place = None
 
-pkm_hk = json.loads('pkmn_hk.json')
-pkm_mv = json.loads('pkm_mv.json')
+pkm_hk = json.load('pkmn_hk.json')
+pkm_mv = json.load('pkm_mv.json')
 
 def handle(msg):
     global ac_sum
