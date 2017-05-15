@@ -177,28 +177,23 @@ def check_iv_cp(msg):
                             iv_0 = "{:.0f}".format(float(((int(iv_a) + int(iv_d) + int(iv_s)) * 100) / float(45)))
                             mv_1 = encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['move_1']
                             mv_2 = encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['move_2']
-                            
-                            pkm_cp = str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['cp'])
                             pkm_lvl = calc_level(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'])
 
 
                             pkm_n = pkm_hk.get(str(pkm_id))
                             mv_1_n = pkm_mv.get(str(mv_1))
                             mv_2_n = pkm_mv.get(str(mv_2))
-                            
-                            address = json.loads(requests.get('https://maps.googleapis.com/maps/api/distancematrix/json?origins=%s,%s&destinations=%s,%s&language=zh_hk' % (target_lat,target_lng,target_lat,target_lng)).content)['destination_addresses'][0].encode('utf8')
-                            map_link = 'http://maps.google.com/maps?q=' + str(target_lat) + ',' + str(target_lng)
-
 
 
                             #Send Results to Telegram
-                            SendM = '#'+ pkm_n + '  (' + str(iv_0) + '%)\n' + address + '['+ '<a href="{0}">地圖</a>'.format(map_link) +']\n\n[30+]\nCP: ' + pkm_cp + '  (' + str(pkm_lvl) + ')\nIV: ' + str(iv_a) + '  |  ' + str(iv_d) + '  |  ' + str(iv_s) + '\nMV: ' + mv_1_n + '  |  ' + mv_2_n
+                            SendM =  '#'+ pkm_n + '  (' + str(iv_0) + '%)\n\n30+:\nIV: ' + str(iv_a) + '  |  ' + str(iv_d) + '  |  ' + str(iv_s) + '\nMV: ' + str(mv_1_n) + '  |  ' + str(mv_2_n) + '\nCP: ' + str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['cp']) + '\nLVL: ' + str(pkm_lvl) 
                             #Unown Form
                             if int(pkm_id) == 201:
                                 form = int(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['pokemon_display']['form'])
                                 form_l = 'A' if form is 1 else 'B' if form is 2 else 'C' if form is 3 else 'D' if form is 4 else 'E' if form is 5 else 'F' if form is 6 else 'G' if form is 7 else 'H' if form is 8 else 'I' if form is 9 else 'J' if form is 10 else 'K' if form is 11 else 'L' if form is 12 else 'M' if form is 13 else 'N' if form is 14 else 'O' if form is 15 else 'P' if form is 16 else 'Q' if form is 17 else 'R' if form is 18 else 'S' if form is 19 else 'T' if form is 20 else 'U' if form is 21 else 'V' if form is 22 else 'W' if form is 23 else 'X' if form is 24 else 'Y' if form is 25 else 'Z' if form is 26 else '!' if form is 27 else '?' if form is 28 else '' #neutral
                                 SendM = SendM + "\nLetter: " + str(form_l)
                             SendM += tth
+                            print SendM
                             bot.sendMessage(msg['chat']['id'],SendM)
 
                             #A logging on telegram ()for owner
