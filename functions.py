@@ -8,6 +8,7 @@ import requests
 from urllib import urlopen
 import ConfigParser
 import json
+import re
 
 #import for pgoapi
 from pgoapi import PGoApi
