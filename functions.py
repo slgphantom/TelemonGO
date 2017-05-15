@@ -262,3 +262,9 @@ def show_map(msg):
             bot.sendLocation(msg['chat']['id'], location[1], location[2])
         except:
             bot.sendMessage(msg['chat']['id'], "打 /map <lat> <lng>，獲得地圖一份")
+            
+def wecatch(msg):
+    if 'text' in msg and 'https://wecatchpokemon.cdstud.io/?' in msg['text']:
+        info = re.search("(?P<url>https?://[^\s]+)", msg['text']).group("url").replace('https://wecatchpokemon.cdstud.io/?','')
+        info = re.split('&|=', info)
+        bot.sendLocation(msg['chat']['id'], info[1], info[3], reply_to_message_id=msg['message_id'])
