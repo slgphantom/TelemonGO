@@ -192,7 +192,7 @@ def check_iv_cp(msg):
 
 
                             #Send Results to Telegram
-                            SendM = '#'+ str(pkm_n) + '  (' + str(iv_0) + '%)\n' + address + '['+ '<a href="{0}">地圖</a>'.format(map_link) +']\n\n[30+]\nCP: ' + pkm_cp + '  (' + str(pkm_lvl) + ')\nIV: ' + str(iv_a) + '  |  ' + str(iv_d) + '  |  ' + str(iv_s) + '\nMV: ' + str(mv_1_n) + '  |  ' + str(mv_2_n) 
+                            SendM = '#'+ pkm_n + '  (' + str(iv_0) + '%)\n' + address + '['+ '<a href="{0}">地圖</a>'.format(map_link) +']\n\n[30+]\nCP: ' + pkm_cp + '  (' + str(pkm_lvl) + ')\nIV: ' + str(iv_a) + '  |  ' + str(iv_d) + '  |  ' + str(iv_s) + '\nMV: ' + mv_1_n + '  |  ' + mv_2_n
                             #Unown Form
                             if int(pkm_id) == 201:
                                 form = int(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['pokemon_display']['form'])
