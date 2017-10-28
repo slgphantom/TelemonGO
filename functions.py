@@ -229,13 +229,13 @@ def main(msg, target_lat, target_lng, alt, pkm_id):
     api.activate_hash_server(hash_key)
     api.set_position(target_lat, target_lng, alt)
     Login = login()
-    if Login is not True:
-        SendM = login_fail_text
-        logger.error('[login failed]')
-        bot.sendMessage(msg['chat']['id'], SendM, parse_mode = 'html')
-        SendM += "\n{}".format(str(ac_list[(ac_sum-1)]))
-        bot.sendMessage(own_id, SendM, parse_mode = 'html')
-        pass
+    #if Login is not True:
+    #    SendM = login_fail_text
+    #    logger.error('[login failed]')
+    #    bot.sendMessage(msg['chat']['id'], SendM, parse_mode = 'html')
+    #    SendM += "\n{}".format(str(ac_list[(ac_sum-1)]))
+    #    bot.sendMessage(own_id, SendM, parse_mode = 'html')
+    #    pass
     Telemon = telemon(target_lat, target_lng)
     print ac_list[(ac_sum-1)]
     if Telemon is None:
