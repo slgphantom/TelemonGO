@@ -13,3 +13,28 @@ lng = 114.123
 [account]
 user = ["user1","user2"]
 pass = ["pass1","pass2"]
+
+[message]
+#<pkm_n> for pokemon name
+#<form_l> for unown form
+#<iv_a> for attack
+#<iv_d> for defense
+#<iv_s> for stamina
+#<iv_percentage> for iv in percentage
+#<mv_1_n> for moveset 1 name
+#<mv_2_n> for moveset 2 name
+#<pkm_lvl> for pokemon lvl
+#<tth> for the time_till_hidden
+#<current_time> for current time
+
+message_recieved_text = OK, Please Wait
+
+not_in_range_text = No International Flight
+
+text = #<pkm_n> <form_l>\n\n<iv_a> | <iv_d> | <iv_s> (<iv_percentage>%)\n<mv_1_n>  |  <mv_2_n>\nLVL: <pkm_lvl>\n\n<tth> left\n\n<current_time>
+
+not_found_text = Not Found, Are you kidding me??
+
+speed_lock_text = SPEEDLOCK, Please Try Again
+
+login_fail_text = LOGIN_FAIL, Please Try Again
