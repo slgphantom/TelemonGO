@@ -194,6 +194,7 @@ def check(msg, encounter_id, spawn_point_id, player_latitude, player_longitude, 
     pkm_n = pkm_hk.get(str(pkm_id)).encode('utf8')
     mv_1_n = pkm_mv.get(mv_1).encode('utf8')
     mv_2_n = pkm_mv.get(mv_2).encode('utf8')
+    pkm_id = pkm_id
 
     form_l = ''
     if int(pkm_id) == 201:
