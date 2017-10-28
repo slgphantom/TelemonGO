@@ -187,7 +187,7 @@ def check(msg, encounter_id, spawn_point_id, player_latitude, player_longitude, 
     iv_percentage = str("{:.0f}".format(float(((int(iv_a) + int(iv_d) + int(iv_s)) * 100) / float(45))))
     mv_1 = str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['move_1'])
     mv_2 = str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['move_2'])
-    pkm_lvl = str(calc_level(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']))
+    pkm_lvl = str(int(calc_level(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data'])))
     cp = str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['cp'])
 
 
