@@ -24,7 +24,7 @@ pass = ["pass1","pass2"]
 #<mv_1_n> for moveset 1 name
 #<mv_2_n> for moveset 2 name
 #<pkm_lvl> for pokemon lvl
-#<pkm_id> for pokemon id
+#<pkmid> for pokemon id
 #<cp> for pokemon cp
 #<tth> for the time_till_hidden
 #<current_time> for current time
@@ -33,7 +33,7 @@ message_recieved_text = OK, Please Wait
 
 not_in_range_text = No International Flight
 
-text = #<pkm_n>    <pkm_id> <form_l>\n\n<iv_a> | <iv_d> | <iv_s> (<iv_percentage>%)\n<mv_1_n>  |  <mv_2_n>\nLVL: <pkm_lvl>\nCP: <cp>\n\n<tth> left\n\n<current_time>
+text = #<pkm_n>    <pkmid> <form_l>\n\n<iv_a> | <iv_d> | <iv_s> (<iv_percentage>%)\n<mv_1_n>  |  <mv_2_n>\nLVL: <pkm_lvl>\nCP: <cp>\n\n<tth> left\n\n<current_time>
 
 not_found_text = Not Found, Are you kidding me??
 
