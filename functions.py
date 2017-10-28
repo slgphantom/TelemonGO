@@ -188,6 +188,7 @@ def check(msg, encounter_id, spawn_point_id, player_latitude, player_longitude, 
     mv_1 = str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['move_1'])
     mv_2 = str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['move_2'])
     pkm_lvl = str(calc_level(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']))
+    cp = str(encounter_response['responses']['ENCOUNTER']['wild_pokemon']['pokemon_data']['cp'])
 
 
     pkm_n = pkm_hk.get(str(pkm_id)).encode('utf8')
