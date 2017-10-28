@@ -75,7 +75,7 @@ def get_gps(msg):
         lat = float(msg['reply_to_message']['location']['latitude'])
         lng = float(msg['reply_to_message']['location']['longitude'])
         f = urlopen('https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=512x512&maptype=hybrid&markers=color:red|' + str(lat) + ',' + str(lng))
-        bot.sendPhoto(msg['chat']['id'], f, reply_to_message_id=msg['message_id'])
+        bot.sendPhoto(msg['chat']['id'], f)
         pass
 
 
@@ -86,7 +86,7 @@ def get_map(msg):
             location = re.split('[ ,]', msg['text'])
             bot.sendLocation(msg['chat']['id'], location[1], location[2])
         except:
-            bot.sendMessage(msg['chat']['id'], "打 /map <lat> <lng>，獲得地圖一份", reply_to_message_id = msg['message_id'], parse_mode = 'html')
+            bot.sendMessage(msg['chat']['id'], "打 /map <lat> <lng>，獲得地圖一份", parse_mode = 'html')
         pass
 
 
@@ -96,7 +96,7 @@ def wecatch(msg):
         info = re.split('&|=', info)
         lat = float(info[1])
         lng = float(info[3])
-        bot.sendLocation(msg['chat']['id'], lat, lng, reply_to_message_id=msg['message_id'])
+        bot.sendLocation(msg['chat']['id'], lat, lng)
         travel(msg, lat, lng)
         pass
 
@@ -108,7 +108,7 @@ def poketrack(msg):
         data2 = re.split('[=&]', data)
         lat = float(data2[1])
         lng = float(data2[3])
-        bot.sendLocation(msg['chat']['id'], lat, lng, reply_to_message_id=msg['message_id'])
+        bot.sendLocation(msg['chat']['id'], lat, lng)
         travel(msg, lat, lng)
         pass
 #----------#
@@ -206,7 +206,7 @@ def check(msg, encounter_id, spawn_point_id, player_latitude, player_longitude, 
     for i in re.findall('<([^<>]+)>',text_style):
         SendM = SendM.replace(('<'+i+'>'), locals()[i])
 
-    bot.sendMessage(msg['chat']['id'], SendM, reply_to_message_id = msg['message_id'], parse_mode = 'html')
+    bot.sendMessage(msg['chat']['id'], SendM, parse_mode = 'html')
 
     #A logging on telegram ()for owner
     try:
@@ -214,7 +214,7 @@ def check(msg, encounter_id, spawn_point_id, player_latitude, player_longitude, 
     except:
         pass     
     SendM += "\n\n"+ str(ac_list[(ac_sum-1)]) + '\nHash_Remaining: ' + str(HashServer.status['remaining'])
-    bot.sendMessage(own_id, SendM, reply_to_message_id = msg['message_id'], parse_mode = 'html')
+    bot.sendMessage(own_id, SendM, parse_mode = 'html')
     return True
 
 
@@ -230,18 +230,18 @@ def main(msg, target_lat, target_lng, alt, pkm_id):
     if Login is not True:
         SendM = login_fail_text
         logger.error('[login failed]')
-        bot.sendMessage(msg['chat']['id'], SendM, reply_to_message_id = msg['message_id'], parse_mode = 'html')
+        bot.sendMessage(msg['chat']['id'], SendM, parse_mode = 'html')
         SendM += "\n{}".format(str(ac_list[(ac_sum-1)]))
-        bot.sendMessage(own_id, SendM, reply_to_message_id = msg['message_id'], parse_mode = 'html')
+        bot.sendMessage(own_id, SendM, parse_mode = 'html')
         pass
     Telemon = telemon(target_lat, target_lng)
     print ac_list[(ac_sum-1)]
     if Telemon is None:
         print "SCAN FAILED: SPEEDLOCK"
         SendM = speed_lock_text
-        bot.sendMessage(msg['chat']['id'], SendM, reply_to_message_id = msg['message_id'], parse_mode = 'html')
+        bot.sendMessage(msg['chat']['id'], SendM, parse_mode = 'html')
         SendM += "\n"+ str(ac_list[(ac_sum-1)]) 
-        bot.sendMessage(own_id,SendM, reply_to_message_id = msg['message_id'], parse_mode = 'html')
+        bot.sendMessage(own_id,SendM, parse_mode = 'html')
         print "End"
         print "Finding..."
    
@@ -252,9 +252,9 @@ def main(msg, target_lat, target_lng, alt, pkm_id):
 
     if len(pkm_confirmed) == 0:
         SendM = not_found_text
-        bot.sendMessage(msg['chat']['id'], SendM, reply_to_message_id = msg['message_id'], parse_mode = 'html')
+        bot.sendMessage(msg['chat']['id'], SendM, parse_mode = 'html')
         SendM += "\n"+ str(ac_list[(ac_sum-1)])
-        bot.sendMessage(own_id, SendM, reply_to_message_id = msg['message_id'], parse_mode = 'html')
+        bot.sendMessage(own_id, SendM, parse_mode = 'html')
         print "NOT FOUND"
 
     for i in pkm_confirmed:
@@ -270,9 +270,9 @@ def check_iv_cp(msg):
         cmd = msg['text'].split(' ')
         target_lat = float(msg['reply_to_message']['location']['latitude'])
         target_lng = float(msg['reply_to_message']['location']['longitude'])
-        bot.sendMessage(msg['chat']['id'], message_recieved_text, reply_to_message_id = msg['message_id'], parse_mode = 'html')
+        bot.sendMessage(msg['chat']['id'], message_recieved_text, parse_mode = 'html')
         if int(target_lat) > 22 or int(target_lat) < 22 or int(target_lng) > 114 or int(target_lng) < 113:
-            bot.sendMessage(msg['chat']['id'], not_in_range_text, reply_to_message_id = msg['message_id'], parse_mode = 'html')
+            bot.sendMessage(msg['chat']['id'], not_in_range_text, parse_mode = 'html')
             pass
         else:
             print "Finding..."
